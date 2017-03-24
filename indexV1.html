@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title></title>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAS4NHvARf2KV-72ZSUBmSmK8U7YDgI_p0&v=3&callback=initMap">
+</script>
+<script  src='knockout.js/dist/knockout.js'></script>
+<script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+<style>
+#map {
+height: 100%;
+}
+html, body {
+height: 100%;
+margin: 0;
+padding: 0;
+}
+</style>
+<meta charset="utf-8">
+</head>
+
+<body>	
+<p>
+Choose your favorite places:
+<input type="search" data-bind="value: self.chosenPlace">
+<button type="button"  onclick="deleteMarkers()">Go</button>
+
+
+<!--working on next line:-->
+<!-- <div data-bind='foreach: locations'>
+<button data-bind="text: title"></button>
+</div>-->
+<!--   //add subbmit button when clicked run the new marker function--> 
+<!-- <button  data-bind="click: doSomething">doSomething</button>-->
+</p>
+<script type="text/javascript">
+
+var map;
+
+var markers= [];
+ 
+var mypar;
+
+function initMap(){
+map = new google.maps.Map(document.getElementById('map'), {
+center: {lat: 30.024413, lng: 31.481912},
+zoom: 13
+});
+ko.applyBindings(new AppViewModel());
+
+for(var i = 0; i < Model().length; i++){  
+        var position = Model()[i].location;
+       console.log(position);
+        var title = Model()[i].title;
+           console.log(title);
+    var marker = new google.maps.Marker({
+        position: position,
+        title: title,
+        map: map,
+        animation: google.maps.Animation.DROP
+      });
+      markers.push(marker);
+
+  
+
+  
+}
+
+    // Shows any markers currently in the array.
+    
+
+
+};
+
+
+
+//markers in global scope, to null it to display the filtered search
+
+
+var Model = ko.observableArray([
+    {
+    title:"Water Way", 
+    location:{lat: 30.041933 , lng: 31.475841}
+    },
+    {
+    title:"Point 90 Mall", 
+    location:{lat: 30.021140 , lng: 31.496678 }
+    },
+    {
+    title:"GUC", 
+    location:{lat: 29.987255 , lng: 31.442121 }
+    },
+    {
+    title:"JW Marriott Hotel",
+    location:{lat: 30.072083 , lng: 31.434486 }
+    },
+    {
+    title:"Downtown Mall", 
+    location:{lat: 30.017159 , lng: 31.412183 }
+    }
+]);
+//Markers all functions:
+
+  // Sets the map on all markers in the array.
+      function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
+  // Removes the markers from the map, but keeps them in the array.
+      function clearMarkers() {
+        setMapOnAll(null);
+      }
+    // Deletes all markers in the array by removing references to them.
+      function deleteMarkers() {
+        clearMarkers();
+        markers = [];
+
+        var position = mypar.location;
+        //console.log(position);
+        //console.log(position);
+        var title = mypar.title;
+        //console.log(title);
+        var marker = new google.maps.Marker({
+        position: position,
+        title: title,
+        map: map,
+        animation: google.maps.Animation.DROP
+        });
+        markers.push(marker);
+        return markers;
+        
+      }
+
+  // Shows any markers currently in the array.
+      function showMarkers() {
+        setMapOnAll(map);
+      }
+
+
+      //end of markers....
+
+//global self:
+
+var self=this;
+
+
+var AppViewModel = function(){
+   
+
+
+
+//add the markers list by default
+//var markers = [];		   
+//self.chosenPlace= ko.observable("");
+self.chosenPlace= ko.observable("");
+self.filter =  ko.computed(function(){
+   return self.chosenPlace().toUpperCase();
+});
+
+
+self.completeFilter =ko.computed(function(){
+    var a;
+    for(var i=0; i < Model().length ; i++){
+//try removing title[0]
+a = Model()[i].title;
+console.log(a);
+//This method returns -1 if the value to search for never occurs.
+    if(a.toUpperCase().indexOf(self.filter()) > -1){
+//works for the first letter alone only
+//console.log("yy");	
+   mypar= Model()[i];
+}
+}		
+ return mypar;
+});    
+//working on this function
+/*
+self.updateMarkers = ko.computed(function(){
+    for(var i=0; i <= markers.length; i++){
+markers[i].setMap(null);
+    }
+    markers.length = 0;
+});
+*/
+//
+
+  /*  markers= [];
+    //console.log(markers);
+    position = mypar.location;
+    //console.log(position);
+    //console.log(position);
+    title = mypar.title;
+    //console.log(title);
+    var marker = new google.maps.Marker({
+    position: position,
+    title: title,
+    map: map,
+    animation: google.maps.Animation.DROP
+    });
+    markers.push(marker);
+return markers;*/
+
+//
+//a function for deleteallmarkers and setting the only typed marker
+//delete all markers in standalone function if anything is typed in search field:
+//choose the fitting event type ko
+
+/*self.shownMarker = ko.computed(function(){
+
+    for(var i = 0; i < Model.length; i++){
+          
+        self.position = Model[i].location;
+       console.log(self.position);
+         self.title = Model[i].title;
+           console.log(self.title);
+       //   markers.push(self.marker.title);
+  //  } 
+ //   return markers;   
+
+//
+
+ var marker = new google.maps.Marker({
+        position: self.position,
+        title: self.title,
+        map: map,
+        animation: google.maps.Animation.DROP
+});
+markers.push(marker.title);
+ }
+ return markers;
+});
+  */      
+
+
+/*
+//we need a function if a value is writtten in search--execute markers array is null
+//and contains nothing
+//then in same function h22() enter whatys returned from the function push in markers array
+var filteringLogic = ko.computed(function (){
+//next session: delete all markers check from forums
+//create new marker using mypar output or h22()
+markers =[];
+//
+});
+*/
+}
+
+
+
+</script>
+
+<div id="map">
+
+
+
+</div>
+
+<!--
+<script  src="js/app.js"></script>
+
+-->
+
+
+</body>
+
+</html>
