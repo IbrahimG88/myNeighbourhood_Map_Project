@@ -39,12 +39,7 @@
         <button type="button" id="selectedMarker">Go</button>
 
 
-        <!--working on next line:-->
-        <!-- <div data-bind='foreach: locations'>
-<button data-bind="text: title"></button>
-</div>-->
-        <!--   //add subbmit button when clicked run the new marker function-->
-        <!-- <button  data-bind="click: doSomething">doSomething</button>-->
+
     </p>
     <script type="text/javascript">
         var Model = ko.observableArray([
@@ -226,8 +221,6 @@
             });
 
 
-            /////////working in the next snippet
-            //check the udacity forums
             var infowindow = new google.maps.InfoWindow();
               var locationInfo;
                  var locationUrl;
@@ -258,21 +251,9 @@
                 });
    
                 }
-                    //.done(function (response) {
-                     //   clearTimeout(wikiTimeout);
-                       // locationUrl = response;//see how to reach the url from the response;
-                        //here choose what you want displayed from the response
-                        // eg: var articleUrl = response[3][0];
-                  //  });
-               // };
-
+           
                 infoWindowPar.marker = marker;
-               // infoWindowPar.setContent('<div>' + marker.title +'<br>'+ locationInfo +'<a href="' + locationUrl + '"> URL '+ locationUrl + '</a></div>');
-
-                // infowindow = parameter
-                // marker = 
-                // largeinfowindow = infowwindow var
-                // infowindow.marker = marker local in function
+             
                 infowindow.open(map, marker);
 
             };
