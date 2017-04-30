@@ -22,6 +22,8 @@
 
 
 
+
+
         html,
         body {
             height: 100%;
@@ -37,14 +39,17 @@
         Choose your favorite places:
         <input type="search" data-bind="value: self.chosenPlace">
         <button type="button" id="selectedMarker">Go</button>
+        <select>
+        <option value="Santiago Bernabéu Stadium">Santiago Bernabéu Stadium</option>
+        <option value="The Madrid Zoo Aquarium">The Madrid Zoo Aquarium</option>
+        <option value="Royal Palace of Madrid">Royal Palace of Madrid</option>
+        <option value="Plaza Mayor, Madrid">Plaza Mayor, Madrid</option>
+        <option value="Museo Nacional Centro de Arte Reina Sofía">Museo Nacional Centro de Arte Reina Sofía</option>
+        </select>
 
-
-
+      
     </p>
     <script type="text/javascript">
-        
-        //=== The model==
-        // Holds the information of the 5 selected locations and their google Maps Lattitude and Long parameters
         var Model = ko.observableArray([
             {
                 title: "Santiago Bernabéu Stadium",
@@ -166,8 +171,7 @@
                 }
                 deleteMarkers();
             });
-            //try this:
-
+         
 
 
             // Shows any markers currently in the array.
@@ -188,7 +192,7 @@
 
             //end of markers....
 
-            //global self:
+           
 
 
 
@@ -198,10 +202,7 @@
 
 
 
-            //add the markers list by default
-            //var markers = [];		   
-            //self.chosenPlace= ko.observable("");
-            self.chosenPlace = ko.observable("");
+             self.chosenPlace = ko.observable("");
             self.filter = ko.computed(function () {
                 return self.chosenPlace().toUpperCase();
             });
@@ -210,13 +211,11 @@
             self.completeFilter = ko.computed(function () {
                 var a;
                 for (var i = 0; i < Model().length; i++) {
-                    //try removing title[0]
                     a = Model()[i].title;
                     console.log(a);
                     //This method returns -1 if the value to search for never occurs.
                     if (a.toUpperCase().indexOf(self.filter()) > -1) {
                         //works for the first letter alone only
-                        //console.log("yy");	
                         mypar = Model()[i];
                     }
                 }
@@ -224,14 +223,14 @@
             });
 
 
-            var infowindow = new google.maps.InfoWindow();
-              var locationInfo;
-                 var locationUrl;
+                   var infowindow = new google.maps.InfoWindow();
+            var locationInfo;
+            var locationUrl;
             var InfoWindowContent = function (marker, infoWindowPar) {
                 console.log("yy");
-              
+
                 if (markers.length == 1) {
-              
+
 
                     var wikipediaUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + mypar.title + "&format=json&callback=wikiCallback";
                     var wikiTimeout = setTimeout(function () {
@@ -239,25 +238,24 @@
                     }, 5000);
 
                     $.ajax({
-               
-                        url: wikipediaUrl,
-                           dataType: "jsonp",
-                        }).done(function(response) {
-                              clearTimeout(wikiTimeout);
-                              locationInfo = response[2][0];
-                              locationUrl = response[3][0];
-                              console.log(response);
-                              console.log(locationInfo);
-                              console.log(locationUrl);
-                                         infoWindowPar.setContent('<div>' + marker.title +'<br>'+ locationInfo +'<a href="' + locationUrl + '"> URL: '+ locationUrl + '</a></div>');
 
-                });
-   
+                        url: wikipediaUrl,
+                        dataType: "jsonp",
+                    }).done(function (response) {
+                        clearTimeout(wikiTimeout);
+                        locationInfo = response[2][0];
+                        locationUrl = response[3][0];
+                        console.log(response);
+                        console.log(locationInfo);
+                        console.log(locationUrl);
+                        infoWindowPar.setContent('<div>' + marker.title + '<br>' + locationInfo + '<a href="' + locationUrl + '"> URL: ' + locationUrl + '</a></div>');
+
+                    });
+
                 }
-           
+               
                 infoWindowPar.marker = marker;
-             
-                infowindow.open(map, marker);
+               infowindow.open(map, marker);
 
             };
 
@@ -269,7 +267,7 @@
 
 
     </div>
-
+    <div id="ViewDiv"></div>
     <!--
 <script  src="js/app.js"></script>
 
