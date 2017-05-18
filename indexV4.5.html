@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
       <link rel="stylesheet" type="text/css" href="app.css">
-    <title></title>
+    <title>hi</title>
     <meta charset="utf-8">
 </head>
 <body>
     <div id="ViewDiv">
         Choose your favorite places:
-        <input type="search" data-bind="textInput: self.chosenPlace" id="selectedMarker">
+        <input type="search" data-bind="textInput: filter" id="selectedMarker">
         <br>
         <br> Filter by Location Name or Type:
-        <ul id="LiOptions" data-bind="foreach: Model">
+        <ul  data-bind="foreach: Model">
             <!--what is returned should override mypar-->
-            
-            <li data-bind=" text: title" ></li>
-            <li data-bind="text:type" ></li>
+            <li data-bind=" text:title ">
+
+                </li>
+                
+         <li data-bind="text:type"  ></li> 
             
         </ul>
     </div>
@@ -33,7 +35,6 @@
     <div id="map">
 
 
-
     </div>
 
     <!--
@@ -42,7 +43,8 @@
 -->
   <script src='knockout.js/dist/knockout.js'></script>
     <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
-       <script src="js/appV4.5.js"></script>
+    
+       <script src="js/appV4.5.3.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAS4NHvARf2KV-72ZSUBmSmK8U7YDgI_p0&v=3&callback=initMap"
         onerror="errorMessage()">
         </script>
