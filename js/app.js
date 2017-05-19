@@ -74,8 +74,8 @@ markers.forEach(function(item){
                 path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
                 scale: 5,
                 strokeColor:  '#660000',
-                strokeOpacity: 0.5,
-                strokeWeight: 4
+                strokeOpacity: '0.5',
+                strokeWeight: '4'
             },
             animation: google.maps.Animation.BOUNCE,
             id: i
