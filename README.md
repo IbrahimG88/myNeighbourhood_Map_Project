@@ -4,7 +4,7 @@
 
 ### Run indexV5.html in any Browser.
 
-(https://ibrahimg88.github.io/myNeighbourhood_Map_Project/myNeighbourhood_Map_Project/indexV5.html)
+(https://ibrahimg88.github.io/myNeighbourhood_Map_Project/indexV5.html)
 
 ## How the app functions:
 
