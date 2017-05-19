@@ -24,4 +24,4 @@
 - Udacity forum threads.
 - Stackoverflow forum.
 
-GitHub Pages link for the project: https://ibrahimg88.github.io/myNeighbourhood_Map_Project/
+GitHub Pages link for the project: <https://ibrahimg88.github.io/myNeighbourhood_Map_Project/>
