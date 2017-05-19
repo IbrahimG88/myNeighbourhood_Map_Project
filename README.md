@@ -1,12 +1,12 @@
 # myNeighbourhood_Map_Project
 
-## To run the app:
+## To run the app
 
 ### Run indexV5.html in any Browser.
 
-To run the app click the following link: (https://ibrahimg88.github.io/myNeighbourhood_Map_Project/indexV5.html)
+To run the app click the following link: https://ibrahimg88.github.io/myNeighbourhood_Map_Project/indexV5.html
 
-## How the app functions:
+## How the app functions
 
 ### Initialy the app loads Madrid, Spain google map, focusing on five locations of my choice in Madrid.
 
@@ -16,7 +16,7 @@ To run the app click the following link: (https://ibrahimg88.github.io/myNeighbo
 
 - Type part of the location name in the search function and the list will filter the user's input to display the markers of the locations' possible choices relevant to user's input.
 
-### The markers' info Windows:
+### The markers' info Windows
 
 - Clicking on the marker will display relevant place information fetched from Wikipedia using ajax request and Wikipedia API.
 
@@ -26,4 +26,4 @@ To run the app click the following link: (https://ibrahimg88.github.io/myNeighbo
 - Udacity forum threads.
 - Stackoverflow forum.
 
-GitHub Pages link for the project: (https://ibrahimg88.github.io/myNeighbourhood_Map_Project/)
+GitHub Pages link for the project: https://ibrahimg88.github.io/myNeighbourhood_Map_Project/
