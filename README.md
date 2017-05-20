@@ -37,15 +37,3 @@
 ##### Contact details: goharyibrahim@gmail.com
 
 
-#### lglkkl;eg
-
-rgegerg
-
-##### gelg;leglgege;egreg
-
-gerggre
-
-###### egergeg
-
-gegege
-
